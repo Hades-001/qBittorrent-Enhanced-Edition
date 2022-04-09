@@ -44,5 +44,5 @@ ENTRYPOINT ["/bin/entrypoint.sh"]
 EXPOSE ${WEBUIPORT}
 
 CMD /usr/bin/qbittorrent-nox \
-    --profile=/etc/qbittorrent-ee \
+    --profile=/etc/qbittorrent \
     -webui-port=${WEBUIPORT}
