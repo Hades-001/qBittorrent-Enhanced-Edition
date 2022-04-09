@@ -16,8 +16,6 @@ COPY --from=builder /usr/bin/qbittorrent-nox /usr/bin
 
 RUN apk add --no-cache ca-certificates su-exec tzdata python3
 
-ENV WEBUIPORT=28080
-
 RUN set -ex && \
     mkdir /etc/qbittorrent && \
     mkdir /root/downloads && \
@@ -41,8 +39,7 @@ COPY docker-entrypoint.sh /bin/entrypoint.sh
 RUN chmod a+x /bin/entrypoint.sh
 ENTRYPOINT ["/bin/entrypoint.sh"]
 
-EXPOSE ${WEBUIPORT}
+EXPOSE 8080
 
 CMD /usr/bin/qbittorrent-nox \
-    --profile=/etc/qbittorrent \
-    -webui-port=${WEBUIPORT}
+    --profile=/etc/qbittorrent
