@@ -18,7 +18,12 @@ RUN apk add --no-cache ca-certificates su-exec tzdata python3
 
 ENV WEBUIPORT=28080
 
-VOLUME ["/etc/qbittorrent-ee"]
+RUN set -ex && \
+    mkdir /etc/qbittorrent && \
+    mkdir /root/downloads && \
+    mkdir /root/torrents
+
+VOLUME ["/etc/qbittorrent"]
 VOLUME ["/root/downloads"]
 
 WORKDIR /root/downloads
@@ -27,7 +32,10 @@ ENV TZ=Asia/Shanghai
 RUN cp /usr/share/zoneinfo/${TZ} /etc/localtime && \
 	echo "${TZ}" > /etc/timezone
 
-ENV PUID=1000 PGID=1000 HOME=/root/downloads
+ENV PUID=1000 PGID=1000
+ENV CONFIGURATION=/etc/qbittorrent
+ENV DOWNLOADS=/root/downloads
+ENV TORRENTS=/root/torrents
 
 COPY docker-entrypoint.sh /bin/entrypoint.sh
 RUN chmod a+x /bin/entrypoint.sh

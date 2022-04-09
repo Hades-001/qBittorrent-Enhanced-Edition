@@ -3,9 +3,10 @@
 set -eu
 
 if [ "$(id -u)" = '0' ]; then
-  chown "${PUID}:${PGID}" "${HOME}" \
-    && exec su-exec "${PUID}:${PGID}" \
-       env HOME="$HOME" "$@"
+  chown -R "${PUID}:${PGID}" "${CONFIGURATION}" && \
+  chown -R "${PUID}:${PGID}" "${DOWNLOADS}" && \
+  chown -R "${PUID}:${PGID}" "${TORRENTS}" && \
+  exec su-exec "${PUID}:${PGID}" "$@"
 else
   exec "$@"
 fi
