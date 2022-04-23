@@ -49,7 +49,10 @@ COPY docker-entrypoint.sh /bin/entrypoint.sh
 RUN chmod a+x /bin/entrypoint.sh
 ENTRYPOINT ["/bin/entrypoint.sh"]
 
-EXPOSE 8080
+ENV WEBUI_PORT=8080
+
+EXPOSE {WEBUI_PORT}
 
 CMD /usr/bin/qbittorrent-nox \
-    --profile=/etc/qbittorrent
+    --profile=/etc/qbittorrent \
+    --webui-port="${WEBUI_PORT}"
