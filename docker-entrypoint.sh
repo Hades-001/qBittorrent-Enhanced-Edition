@@ -6,7 +6,7 @@ if [ "$(id -u)" = '0' ]; then
   chown -R "${PUID}:${PGID}" "${CONFIGURATION}" && \
   chown -R "${PUID}:${PGID}" "${DOWNLOADS}" && \
   chown -R "${PUID}:${PGID}" "${TORRENTS}" && \
-  exec su-exec "${PUID}:${PGID}" "$@"
+  exec gosu "${PUID}:${PGID}" "$@"
 else
   exec "$@"
 fi
