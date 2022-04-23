@@ -27,7 +27,7 @@ WORKDIR /root
 
 RUN set -ex && \
     apt-get update && \
-    apt-get install --no-install-recommends -y ca-certificates locales gosu python3 && \
+    apt-get install --no-install-recommends -y ca-certificates tzdata locales gosu python3 && \
     rm -rf /var/lib/apt/lists/*
 
 RUN set -ex && \
