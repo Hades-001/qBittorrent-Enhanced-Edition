@@ -5,7 +5,7 @@ ARG DEBIAN_FRONTEND=noninteractive
 
 RUN set -ex && \
     apt-get update && \
-    apt-get install --no-install-recommends wget unzip && \
+    apt-get install --no-install-recommends -y wget unzip && \
     rm -rf /var/lib/apt/lists/*
 
 WORKDIR /root
@@ -25,7 +25,7 @@ RUN chmod +x /usr/bin/qbittorrent-nox
 
 RUN set -ex && \
     apt-get update && \
-    apt-get install --no-install-recommends ca-certificates gosu python3 && \
+    apt-get install --no-install-recommends -y ca-certificates gosu python3 && \
     rm -rf /var/lib/apt/lists/*
 
 RUN set -ex && \
