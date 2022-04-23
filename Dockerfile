@@ -51,7 +51,7 @@ ENTRYPOINT ["/bin/entrypoint.sh"]
 
 ENV WEBUI_PORT=8080
 
-EXPOSE {WEBUI_PORT}
+EXPOSE ${WEBUI_PORT}
 
 CMD /usr/bin/qbittorrent-nox \
     --profile=/etc/qbittorrent \
